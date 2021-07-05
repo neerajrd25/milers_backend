@@ -1,0 +1,995 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"PingResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Post": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"title": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"comments": {
+						"items": {
+							"$ref": "#/components/schemas/Comment"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"title",
+					"content",
+					"userId",
+					"user",
+					"comments"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"User": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"posts": {
+						"items": {
+							"$ref": "#/components/schemas/Post"
+						},
+						"type": "array"
+					},
+					"comments": {
+						"items": {
+							"$ref": "#/components/schemas/Comment"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"firstName",
+					"lastName",
+					"email",
+					"posts",
+					"comments"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Comment": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"content": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"postId": {
+						"type": "number",
+						"format": "double"
+					},
+					"post": {
+						"$ref": "#/components/schemas/Post"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"content",
+					"userId",
+					"user",
+					"postId",
+					"post",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUserPayload": {
+				"properties": {
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"firstName",
+					"lastName",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ICommentPayload": {
+				"properties": {
+					"content": {
+						"type": "string"
+					},
+					"userId": {
+						"type": "number",
+						"format": "double"
+					},
+					"postId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"content",
+					"userId",
+					"postId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BikeUsers": {
+				"enum": [
+					"Men",
+					"Women",
+					"Kids",
+					"Unisex"
+				],
+				"type": "string"
+			},
+			"Brand": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"products": {
+						"items": {
+							"$ref": "#/components/schemas/Product"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductTypeCategory": {
+				"enum": [
+					"Bikes",
+					"Rider Accessories",
+					"Bike Accessories",
+					"Components"
+				],
+				"type": "string"
+			},
+			"Product": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"lastUsedValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"productUser": {
+						"$ref": "#/components/schemas/BikeUsers"
+					},
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"brand": {
+						"$ref": "#/components/schemas/Brand"
+					},
+					"productType": {
+						"$ref": "#/components/schemas/ProductType"
+					},
+					"productDetail": {
+						"$ref": "#/components/schemas/ProductDetail"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"lastUsedValue",
+					"productUser",
+					"year",
+					"brand",
+					"productType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProductType": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"productTypeCategory": {
+						"$ref": "#/components/schemas/ProductTypeCategory"
+					},
+					"products": {
+						"items": {
+							"$ref": "#/components/schemas/Product"
+						},
+						"type": "array"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"productTypeCategory"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Category": {
+				"enum": [
+					"Kids",
+					"Rider Accessories",
+					"Bike Accessories",
+					"City",
+					"Road",
+					"E-Bikes"
+				],
+				"type": "string"
+			},
+			"SizeMaster": {
+				"enum": [
+					"Small",
+					"Medium",
+					"Large",
+					"Other"
+				],
+				"type": "string"
+			},
+			"SuspensionType": {
+				"enum": [
+					"Small",
+					"Suspension",
+					"Hydraulic"
+				],
+				"type": "string"
+			},
+			"MATERIAL": {
+				"enum": [
+					"Alloy",
+					"Steel",
+					"Carbon"
+				],
+				"type": "string"
+			},
+			"ProductDetail": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"gear": {
+						"type": "boolean"
+					},
+					"wheelSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"category": {
+						"$ref": "#/components/schemas/Category"
+					},
+					"frameSize": {
+						"$ref": "#/components/schemas/SizeMaster"
+					},
+					"fork": {
+						"$ref": "#/components/schemas/SuspensionType"
+					},
+					"forkMaterial": {
+						"$ref": "#/components/schemas/MATERIAL"
+					},
+					"frontBrakes": {
+						"type": "string"
+					},
+					"rearBrakes": {
+						"type": "string"
+					},
+					"weight": {
+						"type": "number",
+						"format": "double"
+					},
+					"crankset": {
+						"type": "string"
+					},
+					"frontDerailer": {
+						"type": "string"
+					},
+					"rearDerailer": {
+						"type": "string"
+					},
+					"shifters": {
+						"type": "string"
+					},
+					"speed": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"product": {
+						"$ref": "#/components/schemas/Product"
+					}
+				},
+				"required": [
+					"id",
+					"gear",
+					"wheelSize",
+					"category",
+					"frameSize",
+					"shifters",
+					"speed"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IBrandPaylod": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"code",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IProductType": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"productTypeCategory": {
+						"$ref": "#/components/schemas/ProductTypeCategory"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"productTypeCategory"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "palghar-milers",
+		"version": "1.1.1",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/ping": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/posts": {
+			"get": {
+				"operationId": "GetPosts",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Post"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Post"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/posts/{id}": {
+			"get": {
+				"operationId": "GetPost",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Post"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Post"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/User"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserPayload"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/{id}": {
+			"get": {
+				"operationId": "GetUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/comments": {
+			"get": {
+				"operationId": "GetComments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Comment"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Comment"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Comment"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Comment"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ICommentPayload"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/comments/{id}": {
+			"get": {
+				"operationId": "GetComment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Comment"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Comment"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/brands": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Brand"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Brand"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateData",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Brand"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Brand"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IBrandPaylod"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/brands/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Brand"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Brand"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/product-types": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProductType"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductType"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateData",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProductType"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductType"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IProductType"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/product-types/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/ProductType"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"ProductType"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

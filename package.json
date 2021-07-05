@@ -1,5 +1,5 @@
 {
-  "name": "express-typescript",
+  "name": "palghar-milers",
   "version": "1.1.1",
   "description": "",
   "main": "index.js",
@@ -39,8 +39,14 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "class-validator": "^0.13.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.4",

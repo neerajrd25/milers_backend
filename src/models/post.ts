@@ -3,7 +3,7 @@ import { Comment } from "./comment";
 import { User } from "./user";
 
 @Entity()
-export class Post {
+export class Post{
 
     @PrimaryGeneratedColumn()
     id!: number;
@@ -24,10 +24,4 @@ export class Post {
 
     @OneToMany(_type=> Comment, (comment: Comment) => comment.post)
     comments!: Array<Comment>;
-
-    @CreateDateColumn()
-    createdAt!: Date;
-
-    @UpdateDateColumn()
-    updatedAt!: Date;
 }
