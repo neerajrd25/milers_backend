@@ -6,6 +6,8 @@ import CommentRouter from "./comment.router";
 import BrandRouter from "./brand.router";
 import ProductTypeRouter from "./product-type.router";
 import ProductRouter from "./product.router";
+import AuthRouter from "./auth";
+
 const router = express.Router();
 
 router.get("/ping", async (_req, res) => {
@@ -13,7 +15,7 @@ router.get("/ping", async (_req, res) => {
   const response = await controller.getMessage();
   return res.send(response);
 });
-
+router.use("/auth", AuthRouter)
 router.use("/users", UserRouter)
 router.use("/posts", PostRouter)
 router.use("/comments", CommentRouter)

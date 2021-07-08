@@ -12,6 +12,7 @@ export default class UserController {
 
   @Post("/")
   public async createUser(@Body() body: IUserPayload): Promise<User> {
+    console.log('Payload' ,body);
     return createUser(body)
   }
 

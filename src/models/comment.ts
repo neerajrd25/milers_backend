@@ -13,17 +13,17 @@ export class Comment {
     })
     content!: string;
 
-    @Column({ nullable: true })
-    userId!: number;
-    @ManyToOne(_type => User, (user: User) => user.comments)
-    @JoinColumn()
-    user!: User;
+    // @Column({ nullable: true })
+    // userId!: number;
+    // @ManyToOne(_type => User, (user: User) => user.comments)
+    // @JoinColumn()
+    // user!: User;
 
-    @Column({ nullable: true })
-    postId!: number;
-    @ManyToOne(_type => Post, (post: Post) => post.comments)
-    @JoinColumn()
-    post!: Post;
+    // @Column({ nullable: true })
+    // postId!: number;
+    // @ManyToOne(_type => Post, (post: Post) => post.comments)
+    // @JoinColumn()
+    // post!: Post;
 
     @CreateDateColumn()
     createdAt!: Date;

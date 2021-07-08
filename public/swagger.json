@@ -29,28 +29,12 @@
 					},
 					"content": {
 						"type": "string"
-					},
-					"userId": {
-						"type": "number",
-						"format": "double"
-					},
-					"user": {
-						"$ref": "#/components/schemas/User"
-					},
-					"comments": {
-						"items": {
-							"$ref": "#/components/schemas/Comment"
-						},
-						"type": "array"
 					}
 				},
 				"required": [
 					"id",
 					"title",
-					"content",
-					"userId",
-					"user",
-					"comments"
+					"content"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -70,17 +54,14 @@
 					"email": {
 						"type": "string"
 					},
-					"posts": {
-						"items": {
-							"$ref": "#/components/schemas/Post"
-						},
-						"type": "array"
+					"username": {
+						"type": "string"
 					},
-					"comments": {
-						"items": {
-							"$ref": "#/components/schemas/Comment"
-						},
-						"type": "array"
+					"password": {
+						"type": "string"
+					},
+					"role": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -88,53 +69,9 @@
 					"firstName",
 					"lastName",
 					"email",
-					"posts",
-					"comments"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Comment": {
-				"properties": {
-					"id": {
-						"type": "number",
-						"format": "double"
-					},
-					"content": {
-						"type": "string"
-					},
-					"userId": {
-						"type": "number",
-						"format": "double"
-					},
-					"user": {
-						"$ref": "#/components/schemas/User"
-					},
-					"postId": {
-						"type": "number",
-						"format": "double"
-					},
-					"post": {
-						"$ref": "#/components/schemas/Post"
-					},
-					"createdAt": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"updatedAt": {
-						"type": "string",
-						"format": "date-time"
-					}
-				},
-				"required": [
-					"id",
-					"content",
-					"userId",
-					"user",
-					"postId",
-					"post",
-					"createdAt",
-					"updatedAt"
+					"username",
+					"password",
+					"role"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -149,12 +86,51 @@
 					},
 					"email": {
 						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"role": {
+						"type": "string"
 					}
 				},
 				"required": [
 					"firstName",
 					"lastName",
-					"email"
+					"email",
+					"password",
+					"username",
+					"role"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Comment": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"content": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"content",
+					"createdAt",
+					"updatedAt"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -984,6 +960,43 @@
 						}
 					}
 				]
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"operationId": "GetUserByUsername",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserPayload"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

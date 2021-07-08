@@ -6,7 +6,7 @@ export class Brand {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    // @PrimaryColumn()
+    @Column()
     name!: string;
 
     @Column()

@@ -16,12 +16,13 @@ export class Post{
     })
     content!: string;
 
-    @Column({ nullable: true })
-    userId!: number;
-    @ManyToOne(_type => User, (user: User) => user.posts)
-    @JoinColumn()
-    user!: User;
+    
+    // @Column({ nullable: true })
+    // userId!: number;
+    // @ManyToOne(_type => User, (user: User) => user.posts)
+    // @JoinColumn()
+    // user!: User;
 
-    @OneToMany(_type=> Comment, (comment: Comment) => comment.post)
-    comments!: Array<Comment>;
+    // @OneToMany(_type=> Comment, (comment: Comment) => comment.post)
+    // comments!: Array<Comment>;
 }
