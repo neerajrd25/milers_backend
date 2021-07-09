@@ -4,14 +4,20 @@ import express, { Application } from "express";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import helmet from "helmet";
+
 import cors from "cors";
 import Router from "./routes";
 import dbConfig from './config/database'
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+
 
 const PORT = process.env.PORT || 8000;
 
+
 const app: Application = express();
 // Call midlewares
+app.use(bodyParser.json());
 app.use(cors());
 app.use(helmet());
 app.use(express.json());

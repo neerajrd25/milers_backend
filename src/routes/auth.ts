@@ -3,11 +3,11 @@ import { User } from "../models/user";
 import AuthController from "../controllers/auth.controller";
 import * as jwt from "jsonwebtoken";
 import appConfig from "../config/app.config";
-import { error } from "console";
 
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
+    console.log(req.body);
     let { username, password } = req.body;
     let user = new User();
     user.username = username;
