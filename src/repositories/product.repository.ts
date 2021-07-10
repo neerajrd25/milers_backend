@@ -1,7 +1,6 @@
 import { BikeUsers } from "../models/domain-enums";
 import { getRepository} from "typeorm";
-import { Brand, Product, ProductDetail } from '../models'
-import { ProductType } from '../models/product-type';
+import { Brand, Product, ProductDetail, ProductType } from '../models'
 
 export interface IProductPaylod {
   id: number;
@@ -23,7 +22,7 @@ export const list = async () :Promise<Array<Product>> => {
   return repo.find()
 }
 
-export const create  = async (payload: IProductPaylod) :Promise<Product> => {
+export const createProduct  = async (payload: IProductPaylod) :Promise<Product> => {
   const repo = getRepository(Product);
   const obj = new Product();
   console.log(obj);
@@ -38,4 +37,21 @@ export const getOne  = async (id: number) :Promise<Product | null> => {
   const obj = await repo.findOne({id: id})
   if (!obj) return null
   return obj
+}
+
+export const createProductWithDetail  = async (payload: IProductPaylod) :Promise<Product> => {
+  const repo = getRepository(Product);
+  const obj = new Product();
+  console.log(obj);
+  const product = await repo.save({
+    ...obj,
+    ...payload
+  });
+  const detailsRepo = getRepository(ProductDetail);
+  console.log('detail ', {...payload.productDetail});
+  const details = await detailsRepo.save({
+    ...payload.productDetail
+  });
+  product.productDetail = details;
+  return product;
 }

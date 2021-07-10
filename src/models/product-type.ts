@@ -27,9 +27,9 @@ export class ProductType {
 	productTypeCategory!: ProductTypeCategory;
 
 	@OneToMany(_type => Product, product => product.brand)
-    products?: Array<Product>
+	products?: Array<Product>
 
-	    // auditing
+	// auditing
 	@CreateDateColumn()
 	created?: Date;
 	@UpdateDateColumn()
@@ -42,6 +42,6 @@ export class ProductType {
 	@Column({
 		nullable: true
 	})
-    updatedBy?: string
-    
+	updatedBy?: string
+
 }

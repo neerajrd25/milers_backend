@@ -9,85 +9,97 @@ export class ProductDetail {
 
     @Column()
     gear!: boolean;
-    
+
     @Column()
     wheelSize!: number;
 
     @Column({
-		type: 'enum',
-		enum: Category,
-	})
+        type: 'enum',
+        enum: Category,
+    })
     category!: Category;
 
     @Column({
-		type: 'enum',
-		enum: SizeMaster,
+        type: 'enum',
+        enum: SizeMaster,
         default: SizeMaster.O
-	})
+    })
     frameSize!: SizeMaster;
 
     @Column({
-		type: 'enum',
-		enum: SuspensionType,
-        default: SuspensionType.SUSPENSION
-	})
+        type: 'enum',
+        enum: SuspensionType,
+        default: SuspensionType.RIGID,
+        nullable: true,
+    })
     fork?: SuspensionType;
 
     @Column({
-		type: 'enum',
-		enum: MATERIAL,
+        type: 'enum',
+        enum: MATERIAL,
         default: MATERIAL.STEEL
-	})
+    })
     forkMaterial?: MATERIAL;
-    
+
     @Column({
-		type: 'enum',
-		enum: Brakes,
+        type: 'enum',
+        enum: Brakes,
         default: Brakes.POWER_V
-	})
+    })
     frontBrakes?: string;
-    
+
     @Column({
-		type: 'enum',
-		enum: Brakes,
+        type: 'enum',
+        enum: Brakes,
         default: Brakes.POWER_V
-	})
+    })
     rearBrakes?: string;
 
-    @Column()
+    @Column({
+        nullable: true,
+        type: 'numeric', precision: 5, scale: 2 
+    })
     weight?: number;
-    
-    @Column()
+
+    @Column({
+        nullable: true,
+    })
     crankset?: string;
 
-    @Column()
+    @Column({
+        nullable: true,
+    })
     frontDerailer?: string;
 
-    @Column()
+    @Column({
+        nullable: true,
+    })
     rearDerailer?: string;
 
-    @Column()
+    @Column({
+        nullable: true,
+    })
     shifters!: string
-    
+
     @Column()
     speed!: string
 
     // auditing
-	@CreateDateColumn()
-	created?: Date;
-	@UpdateDateColumn()
-	updated?: Date;
+    @CreateDateColumn()
+    created?: Date;
+    @UpdateDateColumn()
+    updated?: Date;
 
-	@Column({
-		nullable: true
-	})
-	createdBy?: string;
-	@Column({
-		nullable: true
-	})
-    updatedBy?: string 
+    @Column({
+        nullable: true
+    })
+    createdBy?: string;
+    @Column({
+        nullable: true
+    })
+    updatedBy?: string
+
     // relations
-
     @OneToOne(type => Product)
     @JoinColumn()
     product?: Product;

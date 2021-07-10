@@ -4,6 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	ManyToOne,
+	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
@@ -11,6 +12,7 @@ import {
 import { Brand } from '.';
 import { ProductType } from './product-type';
 import { ProductDetail } from './product-detail';
+import { PurchaseLineItem } from './purchase-line-item';
 
 @Entity()
 export class Product {
@@ -51,6 +53,11 @@ export class Product {
 	})
 	updatedBy?: string
 
+	@Column({
+		default: false
+	})
+	featured!: boolean
+
 	// Relations
 	@ManyToOne((type) => Brand, (brand: Brand) => brand.products)
 	// @JoinColumn()
@@ -63,5 +70,8 @@ export class Product {
 
 	@OneToOne(type => ProductDetail, productDetail => productDetail.product)
 	productDetail?: ProductDetail;
+
+	@OneToMany(type => PurchaseLineItem, lineItems => lineItems.purchaseHeader)
+    lineItems?: Array<PurchaseLineItem>
 
 }

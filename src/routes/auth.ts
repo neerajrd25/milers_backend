@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
     }
     //Sing JWT, valid for 1 hour
     const token = jwt.sign(
-        { userId: user.id, username: user.username },
+        { userId: user.id, username: user.username , role: user.role },
         appConfig.jwtSecret,
         { expiresIn: "1h" }
       );

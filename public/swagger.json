@@ -252,6 +252,9 @@
 					"updatedBy": {
 						"type": "string"
 					},
+					"featured": {
+						"type": "boolean"
+					},
 					"brand": {
 						"$ref": "#/components/schemas/Brand"
 					},
@@ -260,6 +263,12 @@
 					},
 					"productDetail": {
 						"$ref": "#/components/schemas/ProductDetail"
+					},
+					"lineItems": {
+						"items": {
+							"$ref": "#/components/schemas/PurchaseLineItem"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -268,6 +277,7 @@
 					"lastUsedValue",
 					"productUser",
 					"year",
+					"featured",
 					"brand",
 					"productType"
 				],
@@ -337,7 +347,7 @@
 			},
 			"SuspensionType": {
 				"enum": [
-					"Small",
+					"Rigid",
 					"Suspension",
 					"Hydraulic"
 				],
@@ -431,6 +441,289 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Vendor": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"businessName": {
+						"type": "string"
+					},
+					"ownerFirstName": {
+						"type": "string"
+					},
+					"ownerLastName": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"pancard": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"pincode": {
+						"type": "string"
+					},
+					"gstNumber": {
+						"type": "string"
+					},
+					"dateOfEstablishment": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"contact": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"vouchers": {
+						"items": {
+							"$ref": "#/components/schemas/Product"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"businessName",
+					"contact"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PurchaseLineItem": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"purchaseHeader": {
+						"$ref": "#/components/schemas/PurchaseHeader"
+					},
+					"inventoryItem": {
+						"items": {
+							"$ref": "#/components/schemas/InventoryItem"
+						},
+						"type": "array"
+					},
+					"product": {
+						"$ref": "#/components/schemas/Product"
+					},
+					"description": {
+						"type": "string"
+					},
+					"qty": {
+						"type": "number",
+						"format": "double"
+					},
+					"rate": {
+						"type": "number",
+						"format": "double"
+					},
+					"amount": {
+						"type": "number",
+						"format": "double"
+					},
+					"cGstValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"sGstValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"cGstPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"sGstPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"packingCost": {
+						"type": "number",
+						"format": "double"
+					},
+					"distributorCost": {
+						"type": "number",
+						"format": "double"
+					},
+					"transportCost": {
+						"type": "number",
+						"format": "double"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"purchaseHeader",
+					"inventoryItem",
+					"description",
+					"qty",
+					"rate",
+					"amount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PurchaseHeader": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"invoiceNumber": {
+						"type": "string"
+					},
+					"invoiceDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"billTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"discountTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"packingTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"distributorTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"transportTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"cGstTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"sGstTotal": {
+						"type": "number",
+						"format": "double"
+					},
+					"roundOff": {
+						"type": "number",
+						"format": "double"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"vendor": {
+						"$ref": "#/components/schemas/Vendor"
+					},
+					"lineItems": {
+						"items": {
+							"$ref": "#/components/schemas/PurchaseLineItem"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"invoiceNumber",
+					"invoiceDate",
+					"vendor"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"InventoryItem": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"purchaseLineItem": {
+						"$ref": "#/components/schemas/PurchaseLineItem"
+					},
+					"product": {
+						"$ref": "#/components/schemas/Product"
+					},
+					"skuCode": {
+						"type": "string"
+					},
+					"qty": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"type": "string"
+					},
+					"mrp": {
+						"type": "number",
+						"format": "double"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"purchaseLineItem",
+					"skuCode",
+					"qty",
+					"mrp"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IBrandPaylod": {
 				"properties": {
 					"id": {
@@ -504,9 +797,80 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"IProductPaylod": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"lastUsedValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"productUser": {
+						"$ref": "#/components/schemas/BikeUsers"
+					},
+					"year": {
+						"type": "number",
+						"format": "double"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					},
+					"productDetail": {
+						"$ref": "#/components/schemas/ProductDetail"
+					},
+					"productType": {
+						"$ref": "#/components/schemas/ProductType"
+					},
+					"brand": {
+						"$ref": "#/components/schemas/Brand"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"lastUsedValue",
+					"productUser",
+					"year",
+					"productType",
+					"brand"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "access_token",
+				"in": "query"
+			},
+			"tsoa_auth": {
+				"type": "oauth2",
+				"flows": {
+					"implicit": {
+						"authorizationUrl": "http://swagger.io/api/oauth/dialog",
+						"scopes": {}
+					}
+				}
+			}
+		}
 	},
 	"info": {
 		"title": "palghar-milers",
@@ -960,6 +1324,129 @@
 						}
 					}
 				]
+			}
+		},
+		"/product-type": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Product"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateData",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Product"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IProductPaylod"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/product-type/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Product"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/product-type/detail": {
+			"post": {
+				"operationId": "CreateWithDetail",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Product"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Product"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IProductPaylod"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/auth/login": {

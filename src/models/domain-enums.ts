@@ -28,7 +28,7 @@ export enum BikeUsers {
 };
 
 export enum SuspensionType {
-    RIGID = 'Small',
+    RIGID = 'Rigid',
     SUSPENSION = 'Suspension',
     HYDRAULIC = 'Hydraulic'
 };
@@ -42,6 +42,15 @@ export enum MATERIAL {
     ALLOY = 'Alloy',
     STEEL = 'Steel',
     CARBON = 'Carbon'
+};
+
+export enum ProductStatus {
+    IN_SHIPMENT = 'In Shipment',
+    FOR_SALE = 'For Sale',
+    DEFECTIVE = 'Defective',
+    UNWANTED = 'Unwanted',
+    RETURNED = 'Returned',
+    SOLD = 'sold',
 };
 
 // export const WheelSize = [14, 16, 18, 24, 26, 27, 27.5, 29];

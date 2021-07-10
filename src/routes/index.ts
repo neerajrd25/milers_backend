@@ -31,10 +31,11 @@ router.get("/ping", async (_req, res) => {
   return res.send(response);
 });
 router.use("/auth", AuthRouter)
-router.use("/users", verifyToken, UserRouter)
+// router.use(verifyToken);
+router.use("/users", UserRouter)
 router.use("/posts", PostRouter)
 router.use("/comments", CommentRouter)
-router.use("/brands",verifyToken ,BrandRouter)
+router.use("/brands", BrandRouter)
 router.use("/product-types", ProductTypeRouter)
 router.use("/products", ProductRouter)
 

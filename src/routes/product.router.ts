@@ -1,5 +1,5 @@
 import express from "express";
-import ProductController from '../controllers/product-type.controller';
+import ProductController from '../controllers/product.controller';
 
 const router = express.Router();
 
@@ -15,6 +15,14 @@ router.post("/", async (req, res) => {
   const response = await controller.createData(req.body);
   return res.send(response);
 });
+
+router.post("/detail", async (req, res) => {
+  const controller = new ProductController();
+  console.log(req.body);
+  const response = await controller.createData(req.body);
+  return res.send(response);
+});
+
 
 router.get("/:id", async (req, res) => {
   const controller = new ProductController();
