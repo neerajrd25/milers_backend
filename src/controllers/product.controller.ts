@@ -1,8 +1,8 @@
 import { Get, Route, Tags,  Post, Body, Path } from "tsoa";
 import {Product} from '../models'
-import {list, createProduct, IProductPaylod, getOne, createProductWithDetail} from '../repositories/product.repository'
+import {list, IProductPaylod, getOne, createProductWithDetail} from '../repositories/product.repository'
 
-@Route("product-type")
+@Route("product")
 @Tags("Product")
 export default class ProductController {
   @Get("/")
@@ -12,7 +12,7 @@ export default class ProductController {
 
   @Post("/")
   public async createData(@Body() body: IProductPaylod): Promise<Product> {
-    return createProduct(body)
+    return createProductWithDetail(body)
   }
 
   @Get("/:id")

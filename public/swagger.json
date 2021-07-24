@@ -157,15 +157,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"BikeUsers": {
-				"enum": [
-					"Men",
-					"Women",
-					"Kids",
-					"Unisex"
-				],
-				"type": "string"
-			},
 			"Brand": {
 				"properties": {
 					"id": {
@@ -231,9 +222,6 @@
 						"type": "number",
 						"format": "double"
 					},
-					"productUser": {
-						"$ref": "#/components/schemas/BikeUsers"
-					},
 					"year": {
 						"type": "number",
 						"format": "double"
@@ -275,7 +263,6 @@
 					"id",
 					"name",
 					"lastUsedValue",
-					"productUser",
 					"year",
 					"featured",
 					"brand",
@@ -353,11 +340,20 @@
 				],
 				"type": "string"
 			},
-			"MATERIAL": {
+			"Material": {
 				"enum": [
 					"Alloy",
 					"Steel",
 					"Carbon"
+				],
+				"type": "string"
+			},
+			"BikeUsers": {
+				"enum": [
+					"Men",
+					"Women",
+					"Kids",
+					"Unisex"
 				],
 				"type": "string"
 			},
@@ -384,13 +380,16 @@
 						"$ref": "#/components/schemas/SuspensionType"
 					},
 					"forkMaterial": {
-						"$ref": "#/components/schemas/MATERIAL"
+						"$ref": "#/components/schemas/Material"
 					},
 					"frontBrakes": {
 						"type": "string"
 					},
 					"rearBrakes": {
 						"type": "string"
+					},
+					"productUser": {
+						"$ref": "#/components/schemas/BikeUsers"
 					},
 					"weight": {
 						"type": "number",
@@ -435,6 +434,7 @@
 					"wheelSize",
 					"category",
 					"frameSize",
+					"productUser",
 					"shifters",
 					"speed"
 				],
@@ -492,6 +492,9 @@
 					"updatedBy": {
 						"type": "string"
 					},
+					"active": {
+						"type": "boolean"
+					},
 					"vouchers": {
 						"items": {
 							"$ref": "#/components/schemas/Product"
@@ -502,7 +505,8 @@
 				"required": [
 					"id",
 					"businessName",
-					"contact"
+					"contact",
+					"active"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -807,13 +811,6 @@
 					"name": {
 						"type": "string"
 					},
-					"lastUsedValue": {
-						"type": "number",
-						"format": "double"
-					},
-					"productUser": {
-						"$ref": "#/components/schemas/BikeUsers"
-					},
 					"year": {
 						"type": "number",
 						"format": "double"
@@ -845,11 +842,81 @@
 				"required": [
 					"id",
 					"name",
-					"lastUsedValue",
-					"productUser",
 					"year",
 					"productType",
 					"brand"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IVendorPaylod": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"businessName": {
+						"type": "string"
+					},
+					"ownerFirstName": {
+						"type": "string"
+					},
+					"ownerLastName": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"pancard": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"pincode": {
+						"type": "string"
+					},
+					"gstNumber": {
+						"type": "string"
+					},
+					"dateOfEstablishment": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"contact": {
+						"type": "string"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"updatedBy": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"businessName",
+					"ownerFirstName",
+					"ownerLastName",
+					"address",
+					"pancard",
+					"city",
+					"pincode",
+					"gstNumber",
+					"dateOfEstablishment",
+					"contact",
+					"active"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1326,7 +1393,7 @@
 				]
 			}
 		},
-		"/product-type": {
+		"/product": {
 			"get": {
 				"operationId": "GetAll",
 				"responses": {
@@ -1381,7 +1448,7 @@
 				}
 			}
 		},
-		"/product-type/{id}": {
+		"/product/{id}": {
 			"get": {
 				"operationId": "GetOne",
 				"responses": {
@@ -1417,7 +1484,7 @@
 				]
 			}
 		},
-		"/product-type/detail": {
+		"/product/detail": {
 			"post": {
 				"operationId": "CreateWithDetail",
 				"responses": {
@@ -1447,6 +1514,258 @@
 						}
 					}
 				}
+			}
+		},
+		"/masters/product-users": {
+			"get": {
+				"operationId": "ListProductUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/product-type-categories": {
+			"get": {
+				"operationId": "ListProductTypeCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/categories": {
+			"get": {
+				"operationId": "ListCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/sizes": {
+			"get": {
+				"operationId": "ListSizeMaster",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/suspensions": {
+			"get": {
+				"operationId": "ListSuspensionType",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/brakes": {
+			"get": {
+				"operationId": "ListBrakes",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/masters/materials": {
+			"get": {
+				"operationId": "ListMaterial",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Master"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/vendors": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Vendor"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Vendors"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateData",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Vendor"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Vendors"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IVendorPaylod"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/vendors/{id}": {
+			"get": {
+				"operationId": "GetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Vendor"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Vendors"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/auth/login": {

@@ -9,7 +9,9 @@ export class Brand {
     @Column()
     name!: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     url?: string;
 
     @Column({

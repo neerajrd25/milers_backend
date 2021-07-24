@@ -6,6 +6,9 @@ import CommentRouter from "./comment.router";
 import BrandRouter from "./brand.router";
 import ProductTypeRouter from "./product-type.router";
 import ProductRouter from "./product.router";
+import MasterRouter from "./master.router";
+import VendorRouter from "./vendor.router";
+
 import AuthRouter from "./auth";
 
 
@@ -38,6 +41,9 @@ router.use("/comments", CommentRouter)
 router.use("/brands", BrandRouter)
 router.use("/product-types", ProductTypeRouter)
 router.use("/products", ProductRouter)
+router.use("/masters", MasterRouter)
+router.use("/vendors", VendorRouter)
+
 
 
 export default router;

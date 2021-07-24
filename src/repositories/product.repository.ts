@@ -5,8 +5,7 @@ import { Brand, Product, ProductDetail, ProductType } from '../models'
 export interface IProductPaylod {
   id: number;
   name: string;
-  lastUsedValue: number;
-  productUser: BikeUsers;
+  // productUser: BikeUsers;
   year: number;
   created?: Date;
   updated?: Date;
@@ -19,7 +18,12 @@ export interface IProductPaylod {
 
 export const list = async () :Promise<Array<Product>> => {
   const repo = getRepository(Product);
-  return repo.find()
+  return repo.find({
+    relations: ['brand', 'productType', 'productDetail'],
+    order: {
+      updated: 'DESC'
+    }
+  })
 }
 
 export const createProduct  = async (payload: IProductPaylod) :Promise<Product> => {

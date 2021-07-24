@@ -1,4 +1,3 @@
-import { BikeUsers } from './domain-enums';
 import {
 	Column,
 	CreateDateColumn,
@@ -22,18 +21,11 @@ export class Product {
 	@Column({
 		default: 0,
 	})
-	
+
 	@Column()
 	name!: string;
 
 	lastUsedValue!: number;
-
-	@Column({
-		type: 'enum',
-		enum: BikeUsers,
-		default: BikeUsers.MEN
-	})
-	productUser!: BikeUsers;
 
 	@Column()
 	year!: number;
@@ -59,8 +51,8 @@ export class Product {
 	featured!: boolean
 
 	// Relations
+
 	@ManyToOne((type) => Brand, (brand: Brand) => brand.products)
-	// @JoinColumn()
 	brand!: Brand;
 
 	@ManyToOne((type) => ProductType, (productType: ProductType) => productType.products)
@@ -72,6 +64,6 @@ export class Product {
 	productDetail?: ProductDetail;
 
 	@OneToMany(type => PurchaseLineItem, lineItems => lineItems.purchaseHeader)
-    lineItems?: Array<PurchaseLineItem>
+	lineItems?: Array<PurchaseLineItem>
 
 }

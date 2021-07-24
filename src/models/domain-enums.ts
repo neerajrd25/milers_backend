@@ -38,7 +38,7 @@ export enum Brakes {
     POWER_V = 'Power-V Brakes',
 };
 
-export enum MATERIAL {
+export enum Material {
     ALLOY = 'Alloy',
     STEEL = 'Steel',
     CARBON = 'Carbon'

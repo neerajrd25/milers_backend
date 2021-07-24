@@ -35,6 +35,8 @@ app.use(Router);
 console.log('Something')
 createConnection(dbConfig).then(_connection => {
   // console.log(_connection)
+
+  // FIX ME : RUN MASTER DATA INSERT
   app.listen(PORT, () => {
     console.log("Server is running on port", PORT);
   });

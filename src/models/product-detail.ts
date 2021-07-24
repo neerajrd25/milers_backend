@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Brakes, Category, MATERIAL, SizeMaster, SuspensionType } from "./domain-enums";
+import { Brakes, Category, Material, SizeMaster, SuspensionType } from "./domain-enums";
 import { Product } from './product';
+import { BikeUsers } from './domain-enums';
 
 @Entity()
 export class ProductDetail {
@@ -36,10 +37,10 @@ export class ProductDetail {
 
     @Column({
         type: 'enum',
-        enum: MATERIAL,
-        default: MATERIAL.STEEL
+        enum: Material,
+        default: Material.STEEL
     })
-    forkMaterial?: MATERIAL;
+    forkMaterial?: Material;
 
     @Column({
         type: 'enum',
@@ -54,6 +55,13 @@ export class ProductDetail {
         default: Brakes.POWER_V
     })
     rearBrakes?: string;
+
+    @Column({
+		type: 'enum',
+		enum: BikeUsers,
+		default: BikeUsers.MEN
+	})
+	productUser!: BikeUsers;
 
     @Column({
         nullable: true,
