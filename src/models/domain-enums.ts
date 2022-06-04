@@ -7,8 +7,8 @@ export enum ProductTypeCategory {
 
 export enum Category {
     KIDS = "Kids",
-    HYBRID = "Rider Accessories",
-    MTB = "Bike Accessories",
+    HYBRID = "Hybrid",
+    MTB = "MTB",
     CITY = "City",
     ROAD = "Road",
     E_BIKE = "E-Bikes"

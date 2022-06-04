@@ -226,6 +226,9 @@
 						"type": "number",
 						"format": "double"
 					},
+					"description": {
+						"type": "string"
+					},
 					"created": {
 						"type": "string",
 						"format": "date-time"
@@ -315,8 +318,8 @@
 			"Category": {
 				"enum": [
 					"Kids",
-					"Rider Accessories",
-					"Bike Accessories",
+					"Hybrid",
+					"MTB",
 					"City",
 					"Road",
 					"E-Bikes"
@@ -814,6 +817,9 @@
 					"year": {
 						"type": "number",
 						"format": "double"
+					},
+					"description": {
+						"type": "string"
 					},
 					"created": {
 						"type": "string",

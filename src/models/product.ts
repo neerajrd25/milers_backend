@@ -30,6 +30,11 @@ export class Product {
 	@Column()
 	year!: number;
 
+	@Column({
+		nullable: true
+	})
+	description?: string;
+
 	// auditing
 	@CreateDateColumn()
 	created?: Date;

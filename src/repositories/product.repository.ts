@@ -7,6 +7,7 @@ export interface IProductPaylod {
   name: string;
   // productUser: BikeUsers;
   year: number;
+  description?: string;
   created?: Date;
   updated?: Date;
   createdBy?: string;
